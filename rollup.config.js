@@ -6,20 +6,24 @@ const somethingExternalId = path.resolve(__dirname, 'src/something-external.js')
 
 module.exports = {
   input: 'src/index.js',
+  external: [
+    'fizzbuzz',
+    somethingExternalId
+  ],
   output: [
     {
       name: 'Foobar',
-      file: 'actual-output.js',
+      file: 'index.js',
       format: 'iife',
       globals: {
         'fizzbuzz': 'fizzbuzz',
         [somethingExternalId]: 'somethingExternal',
       },
-      external: [
-        'fizzbuzz',
-        somethingExternalId
-      ]
     },
+    {
+      file: 'index.es.js',
+      format: 'es',
+    }
   ],
   plugins: [
     resolve(),
